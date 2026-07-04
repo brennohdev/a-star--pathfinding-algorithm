@@ -1,0 +1,29 @@
+# Build output
+build/
+output/
+
+# Compiled binaries
+*.o
+*.obj
+*.exe
+*.out
+*.app
+src/main
+
+# IDE and editor caches
+.cache/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# OS files
+.DS_Store
+Thumbs.db
