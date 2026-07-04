@@ -1,1 +1,1 @@
-# A* Pathfiding Project
+# A* Pathfinding Project
