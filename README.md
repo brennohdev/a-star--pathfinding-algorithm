@@ -1,6 +1,6 @@
 # A* Pathfinding — from scratch, in C++17
 
-This is the second checkpoint in my self-directed robotics learning path. The goal here was to implement the A* algorithm from scratch, understand the data structures that make it work, and learn intermediate C++ by actually writing it.
+This is the second checkpoint in my self-directed robotics learning path. The goal here was to implement the A* algorithm from scratch, understand the data structures that make it work
 
 The previous project (projectile simulation with aerodynamic drag) gave me the basics of C++ and computational physics. But it used very little STL and zero pointers. A* forced me to work with complex containers, graphs, pointers, and make real architectural decisions.
 
@@ -57,7 +57,7 @@ The project uses CMake's FetchContent to download SFML automatically. You don't 
 
 ```bash
 git clone https://github.com/brennohdev/a-star--pathfinding-algorithm.git
-cd astar-pathfinding
+cd a-star--pathfinding-algorithm
 ./build.sh
 ./build/app
 ```
@@ -97,7 +97,7 @@ SFML 3.0.2 is fetched and built automatically by CMake. No manual installation r
 |----------|--------|-------|
 | macOS (ARM/Intel) | ✅ | Tested on Apple Silicon |
 | Linux (X11) | ✅ | Requires OpenGL and X11 dev packages |
-| Windows | ✅ | Works with MSVC or MinGW |
+| Windows | not tested | maybe Works with MSVC or MinGW |
 
 For Linux, if the build fails on missing system libraries:
 ```bash
