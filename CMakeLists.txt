@@ -5,7 +5,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(SFML 3 COMPONENTS Graphics REQUIRED)
+include(FetchContent)
+
+FetchContent_Declare(
+    sfml
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 3.0.2
+    GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(sfml)
 
 add_executable(app
     src/main.cpp

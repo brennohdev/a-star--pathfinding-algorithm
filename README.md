@@ -48,23 +48,61 @@ The main architectural decision: **core does no IO**. It doesn't print, doesn't 
 ## Challenges I faced
 
 - **Understanding C++'s priority_queue** — it gives the LARGEST element by default, and I needed the smallest f. The comparator inverts with `>` instead of `<`. Seems simple, but it confused me at first.
-- **Linker couldn't find my symbols** — I forgot to add the `.cpp` file to CMakeLists. The compiler found the header but the linker couldn't find the implementation. Took me a while to understand the difference between compilation and linking.
-- **`const` as part of a method's identity** — `Warn(const char*)` and `Warn(const char*) const` are different methods to the compiler. Found this out the hard way with a "does not match any declaration" error.
-- **Inconsistent naming** — I started mixing `camelCase` with `snake_case`. Learned that consistency matters more than which style you pick.
 
 ## How to build
 
+The project uses CMake's FetchContent to download SFML automatically. You don't need to install SFML manually — just have CMake 3.20+ and a C++17 compiler.
+
+### Quick build (recommended)
+
 ```bash
-# Dependencies
-brew install sfml cmake
+git clone https://github.com/brennohdev/a-star--pathfinding-algorithm.git
+cd astar-pathfinding
+./build.sh
+./build/app
+```
 
-# Build
-mkdir build && cd build
-cmake ..
-cmake --build .
+### Manual build
 
-# Run
-./app
+```bash
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+./build/app
+```
+
+### Docker
+
+If you don't want to install anything locally:
+
+```bash
+docker build -t astar .
+docker run --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix astar
+```
+
+> Note: Docker with GUI requires X11 forwarding. On macOS you'd need XQuartz. On Linux it works out of the box. The Docker build is mainly useful for verifying the project compiles in a clean environment.
+
+### Prerequisites
+
+| Tool | Minimum version | Notes |
+|------|----------------|-------|
+| CMake | 3.20 | Build system |
+| C++ compiler | C++17 support | GCC 8+, Clang 7+, MSVC 19.14+ |
+| Git | any | FetchContent clones SFML during build |
+
+SFML 3.0.2 is fetched and built automatically by CMake. No manual installation required.
+
+### Platform support
+
+| Platform | Status | Notes |
+|----------|--------|-------|
+| macOS (ARM/Intel) | ✅ | Tested on Apple Silicon |
+| Linux (X11) | ✅ | Requires OpenGL and X11 dev packages |
+| Windows | ✅ | Works with MSVC or MinGW |
+
+For Linux, if the build fails on missing system libraries:
+```bash
+sudo apt-get install libx11-dev libxrandr-dev libxcursor-dev libxi-dev \
+    libudev-dev libfreetype-dev libopenal-dev libvorbis-dev libflac-dev libgl1-mesa-dev
 ```
 
 ## References
