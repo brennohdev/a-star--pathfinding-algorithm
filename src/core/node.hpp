@@ -1,16 +1,8 @@
 #include <unordered_map>
 #include <vector>
 
-namespace astar {
+namespace astar::core {
 
-    struct SimpleGraph {
-    std::unordered_map<char, std::vector<char> > edges;
+struct Node {};
 
-    std::vector<char> neighbors(char id)
-    {
-            return edges[id];
-    }
-    };
-
-}
-
+} // namespace astar::core
